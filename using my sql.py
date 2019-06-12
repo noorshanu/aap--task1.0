@@ -25,7 +25,7 @@ for i in x.options:
 print(st)
 
 try:
-    cnx = mysql.connector.connect(user='root', password="", database='aap')
+    cnx = mysql.connector.connect(user='root', password='noor6190', host='localhost',database='aap',auth_plugin='mysql_native_password')
     cursor = cnx.cursor()
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
@@ -63,10 +63,11 @@ for i in range(1,len(x.options)):
             for m in pollst:
                 print(str(st[i]),str(district[j]),str(ac[k]),str(m))
                 try:
-                    cursor.execute("""insert into aap.pollst values(%s,%s,%s,%s)""", (str(st[i]),str(district[j]),str(ac[k]),str(m)))
+                    cursor.execute("""insert into aap.pollst values(%s,%s,%s,%s)""",
+                                   (str(st[i]),str(district[j]),str(ac[k]),str(m)))
                     cnx.commit()
                 except mysql.connector.Error as err:
                     print(err)
                 except:
-                    print("Unknown Error")
+                    print("distric")
 cnx.close()
